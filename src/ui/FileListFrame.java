@@ -48,7 +48,7 @@ public class FileListFrame extends JFrame{
         });
         add(confirmButton, BorderLayout.LINE_START);
         add(cancelButton,BorderLayout.LINE_END);
-        add(fileComboBox,BorderLayout.CENTER);
+        add(fileComboBox,BorderLayout.NORTH);
         setVisible(true);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setBounds(800,400,400,300);

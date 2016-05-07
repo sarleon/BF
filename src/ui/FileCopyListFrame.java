@@ -36,6 +36,7 @@ public class FileCopyListFrame extends JFrame {
                 mainFrame.remoteHelper.setCurrentFile(filename);
                 String codeText = ioService.readFileCopy(mainFrame.remoteHelper.getUsername(), filename);
                 mainFrame.setCodeText(codeText);
+                mainFrame.remoteHelper.setCurrentFile(filename.split("_")[1]);
             } catch (RemoteException e1) {
                 e1.printStackTrace();
             }
@@ -49,7 +50,7 @@ public class FileCopyListFrame extends JFrame {
         });
         add(confirmButton, BorderLayout.LINE_START);
         add(cancelButton, BorderLayout.LINE_END);
-        add(fileComboBox, BorderLayout.CENTER);
+        add(fileComboBox, BorderLayout.NORTH);
         setVisible(true);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setBounds(800, 400, 400, 300);

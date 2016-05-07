@@ -45,8 +45,10 @@ public class MainFrame extends JFrame {
 		fileMenu.add(newMenuItem);
 		JMenuItem openMenuItem = new JMenuItem("Open");
 		fileMenu.add(openMenuItem);
-		JMenuItem saveMenuItem = new JMenuItem("Save");
+		JMenuItem saveMenuItem = new JMenuItem("Save as");
 		fileMenu.add(saveMenuItem);
+		JMenuItem saveNewMenuItem = new JMenuItem("Save");
+		fileMenu.add(saveNewMenuItem);
 		JMenuItem exitMenuItem = new JMenuItem("Exit");
 		fileMenu.add(exitMenuItem);
 
@@ -78,7 +80,7 @@ public class MainFrame extends JFrame {
 
 
 
-
+		saveNewMenuItem.addActionListener(new SaveNewMenuItemActionListener());
 		newMenuItem.addActionListener(new MenuItemActionListener());
 		openMenuItem.addActionListener(new OpenActionListener());
 		saveMenuItem.addActionListener(new SaveActionListener());
@@ -115,6 +117,30 @@ public class MainFrame extends JFrame {
 		frame.setSize(1920, 1080);
 		frame.setLocation(0, 0);
 		frame.setVisible(true);
+	}
+
+	class SaveNewMenuItemActionListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(!remoteHelper.isLogin()){
+				System.out.println(remoteHelper.isLogin());
+				new AlertFrame();
+//				new JOptionPane().createDialog("Please login first");
+			} else {
+
+
+
+				String code = textArea.getText();
+				try {
+
+					RemoteHelper.getInstance().getIOService().writeFile(code,remoteHelper.getUsername(), remoteHelper.getCurrentFile());
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		}
+
 	}
 	class HistoryMenuItemActionListen implements ActionListener{
 
