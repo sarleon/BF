@@ -15,13 +15,14 @@ public class FileNameFrame extends JFrame {
     private JButton saveButton;
     public FileNameFrame(MainFrame mainFrame){
         filenameField=new JTextField();
-        promptLabel=new JLabel("please enter filename");
+        promptLabel=new JLabel("please enter filename" +"\n"+
+                "(if the filename is existed,the file will be cover)");
         saveButton=new JButton("save");
         filenameField.setFont(new Font("Lato",1,40));
-        promptLabel.setFont(new Font("Lato",1,40));
+        promptLabel.setFont(new Font("Lato",1,20));
         saveButton.setFont(new Font("Lato",1,40));
         setVisible(true);
-        setBounds(800,400,400,300);
+        setBounds(700,400,650,300);
         setLayout(new GridLayout(3,1));
         saveButton.addActionListener(e -> {
             mainFrame.remoteHelper.setCurrentFile(filenameField.getText());

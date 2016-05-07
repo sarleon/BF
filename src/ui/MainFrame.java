@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
 
 import javax.swing.*;
+
+import org.omg.PortableInterceptor.ACTIVE;
 import rmi.RemoteHelper;
 import service.ExecuteService;
 
@@ -62,8 +64,7 @@ public class MainFrame extends JFrame {
 		menuBar.add(historyMenu);
 		JMenuItem checkCodeMenuItem=new JMenuItem("Check history code");
 		historyMenu.add(checkCodeMenuItem);
-		JMenuItem recoverCodeMenuItem=new JMenuItem("Recover history code");
-		historyMenu.add(recoverCodeMenuItem);
+
 
 		/*第四栏*/
 		JMenu accountMenu=new JMenu("account");
@@ -86,7 +87,7 @@ public class MainFrame extends JFrame {
 		loginMenuItem.addActionListener(new AccoutMenuItemActionListener());
 		logoutMenuItem.addActionListener(new AccoutMenuItemActionListener());
 		runMenuItem.addActionListener(new RunMenuItemActionListener());
-
+		checkCodeMenuItem.addActionListener(new HistoryMenuItemActionListen());
 		menuBar.add(accountLabel);
 		textArea = new JTextArea("",20,10);
 		textArea.setFont(new Font("Lato",1,25));
@@ -115,7 +116,19 @@ public class MainFrame extends JFrame {
 		frame.setLocation(0, 0);
 		frame.setVisible(true);
 	}
+	class HistoryMenuItemActionListen implements ActionListener{
 
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(!remoteHelper.isLogin()){
+				System.out.println(remoteHelper.isLogin());
+				new AlertFrame();
+//				new JOptionPane().createDialog("Please login first");
+			} else {
+				new FileCopyListFrame(MainFrame.this);
+			}
+		}
+	}
 	class RunMenuItemActionListener implements ActionListener{
 
 		@Override
@@ -208,8 +221,8 @@ public class MainFrame extends JFrame {
 				String code = textArea.getText();
 				try {
 					new FileNameFrame(MainFrame.this);
-					RemoteHelper.getInstance().getIOService().writeFile(code,remoteHelper.getUsername(), remoteHelper.getCurrentFile());
-				} catch (RemoteException e1) {
+				//	RemoteHelper.getInstance().getIOService().writeFile(code,remoteHelper.getUsername(), remoteHelper.getCurrentFile());
+				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 			}
