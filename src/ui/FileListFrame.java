@@ -46,12 +46,20 @@ public class FileListFrame extends JFrame{
         cancelButton.addActionListener(e -> {
             dispose();
         });
-        add(confirmButton, BorderLayout.LINE_START);
-        add(cancelButton,BorderLayout.LINE_END);
-        add(fileComboBox,BorderLayout.NORTH);
+
+        setLayout(null);
+        fileComboBox.setFont(new Font("Lato",1,25));
+        confirmButton.setFont(new Font("Lato",1,20));
+        cancelButton.setFont(new Font("Lato",1,20));
+        fileComboBox.setBounds(40,30,300,40);
+        confirmButton.setBounds(30,100,120,30);
+        cancelButton.setBounds(210,100,120,30);
+        add(confirmButton);
+        add(cancelButton);
+        add(fileComboBox);
         setVisible(true);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setBounds(800,400,400,300);
+        setBounds(800,400,400,240);
 
 
     }

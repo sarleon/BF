@@ -18,6 +18,7 @@ public class LoginFrame extends JFrame {
     private JLabel passwordLabel;
     private MainFrame mainFrame;
     public LoginFrame(MainFrame mainFrame){
+
         this.mainFrame=mainFrame;
         loginButton=new JButton("Submit");
         cancelButton=new JButton("Cancel");
@@ -70,8 +71,12 @@ public class LoginFrame extends JFrame {
         setLocation(800,400);
         setSize(400,300);
         setTitle("login");
+
         setFont(new Font("Dialog",Font.BOLD,30));
         setVisible(true);
-        setLayout(new GridLayout(3,2));
+        GridLayout gridLayout=new GridLayout(3,2);
+        gridLayout.setHgap(60);
+        gridLayout.setVgap(60);
+        setLayout(gridLayout);
     }
 }
