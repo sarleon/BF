@@ -6,8 +6,7 @@ import service.ExecuteService;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
@@ -160,6 +159,28 @@ public class MainFrame extends JFrame {
 		pastCodeArrayList.add("");
 		Thread thread=new Thread(new saveBackupsThread());
 		thread.start();
+
+
+		textArea.addKeyListener(new KeyListener() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+
+
+					if (e.getKeyCode() == KeyEvent.VK_F1) {
+						undoCode();
+					} else if (e.getKeyCode() == KeyEvent.VK_F2) {
+						redoCode();
+					}
+
+			}
+			@Override
+			public void keyReleased(KeyEvent e) {
+			}
+		});
 
 		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		frame.setSize(1920, 1080);
