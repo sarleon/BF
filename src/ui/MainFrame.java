@@ -324,7 +324,13 @@ public class MainFrame extends JFrame {
 		}
 
 	}
+	class  RegisterMenuItemActionListener implements  ActionListener{
 
+		@Override
+		public void actionPerformed(ActionEvent e) {
+
+		}
+	}
 
 	class UndoMenuItemActionListener implements ActionListener{
 
